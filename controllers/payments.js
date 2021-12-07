@@ -1,3 +1,5 @@
+const { baseUrl } = require('../constants');
+
 const router = require('express').Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -19,8 +21,8 @@ router.post('/', async function(req,res){
               },
             ],
             mode: 'payment',
-            success_url: 'https://example.com/success',
-            cancel_url: 'https://example.com/cancel',
+            success_url: baseUrl + 'success',
+            cancel_url: baseUrl + 'cancel',
           });
           res.json({ id: session.id });
     }catch(error){

@@ -6,11 +6,12 @@ const helmet = require("helmet");
 const payments = require('./controllers/payments');
 const upgradeplan = require('./controllers/upgradeplan');
 const admin = require("firebase-admin");
+const { getFirebaseUser } = require('./middleware/firebaseSecurity');
 const port = 3000;
 app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
-app.use('/create-payment-intent', payments);
+app.use('/create-payment-intent', getFirebaseUser, payments);
 app.use('/upgrade-plan', payments);
 admin.initializeApp({
     credential: admin.credential.cert({
@@ -26,6 +27,8 @@ admin.initializeApp({
         "client_x509_cert_url": process.env.client_x509_cert_url
     })
 });
+
+app.get('/', (req,res) => res.send({message: "App works 🥳🥳"}));
 app.listen(port, () => {
 console.log("App running! ✅");
 });
