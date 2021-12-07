@@ -4,7 +4,7 @@ const collection = 'rowdeousers';
 router.put('/', async function(req,res){
     try{
         const body = req.body.userId;
-        const user = await firestore.firestore()
+        await firestore.firestore()
         .collection(collection).doc(body).update({subscriptionStatus: true});
         res.status(204).send({message: "Successfully upgraded plan"});
     }catch(error){
