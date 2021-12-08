@@ -18,7 +18,7 @@ admin.initializeApp({
         "type": "service_account",
         "project_id": "rowdeo-app",
         "private_key_id": process.env.private_key_id,
-        "private_key": process.env.private_key,
+        "private_key": process.env.private_key.replace(/\\n/g, '\n'),
         "client_email": process.env.client_email,
         "client_id": process.env.client_id,
         "auth_uri": process.env.auth_uri,
