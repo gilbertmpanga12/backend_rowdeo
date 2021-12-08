@@ -12,7 +12,7 @@ app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use('/create-payment-intent', getFirebaseUser, payments);
-app.use('/upgrade-plan', payments);
+app.use('/upgrade-plan', upgradeplan);
 admin.initializeApp({
     credential: admin.credential.cert({
         "type": "service_account",
@@ -29,6 +29,6 @@ admin.initializeApp({
 });
 
 app.get('/', (req,res) => res.send({message: "App works 🥳🥳"}));
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
 console.log("App running! ✅");
 });
