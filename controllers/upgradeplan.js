@@ -9,18 +9,18 @@ router.put('/', async function(req,res){
         const event = stripe.webhooks.constructEvent(request.body, stripeSignature, endpointSecret);
         switch (event.type) {
             case 'checkout.session.async_payment_failed':
-              const session = event.data.object;
-              console.log("checkout.session.async_payment_failed", session);
+              const sessionFailed = event.data.object;
+              console.log("checkout.session.async_payment_failed", sessionFailed);
               // Then define and call a function to handle the event checkout.session.async_payment_failed
               break;
             case 'checkout.session.async_payment_succeeded':
-              const session = event.data.object;
-              console.log("checkout.session.async_payment_succeeded", session)
+              const sessionSuccess = event.data.object;
+              console.log("checkout.session.async_payment_succeeded", sessionSuccess)
               // Then define and call a function to handle the event checkout.session.async_payment_succeeded
               break;
             case 'checkout.session.completed':
-              const session = event.data.object;
-              console.log("checkout.session.completed", session);
+              const sessionComplete = event.data.object;
+              console.log("checkout.session.completed", sessionComplete);
               // Then define and call a function to handle the event checkout.session.completed
               break;
             // ... handle other event types
