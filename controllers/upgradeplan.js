@@ -4,6 +4,8 @@ const collection = 'rowdeousers';
 const endpointSecret = process.env.endpointSecret;
 router.put('/', async function(req,res){
     try{
+        console.log('ALLLLLLLLL CALLLEDDDD'); 
+        console.log(JSON.stringify(req.body));
         const body = req.body.userId;
         const stripeSignature = request.headers['stripe-signature'];
         const event = stripe.webhooks.constructEvent(request.body, stripeSignature, endpointSecret);
@@ -32,6 +34,7 @@ router.put('/', async function(req,res){
         // .collection(collection).doc(body).update({subscriptionStatus: true});
         res.status(204).send({message: "Successfully upgraded plan"});
     }catch(error){
+      console.log('error is hereeee', JSON.stringify(error));
         res.status(500).send({error});
     }   
 });
