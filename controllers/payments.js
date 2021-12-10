@@ -16,10 +16,12 @@ router.post('/', async function(req,res){
                     name: 'rowdeo-premium',
                   },
                   unit_amount: Number(amount) * 100,
+                  
                 },
                 quantity: 1,
               },
             ],
+            metadata: {userId: 1000},
             mode: 'payment',
             success_url: baseUrl + 'success',
             cancel_url: baseUrl + 'cancel',
