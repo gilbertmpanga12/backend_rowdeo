@@ -1,4 +1,5 @@
 require('dotenv').config();
+const express = require('express');
 const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -10,9 +11,10 @@ const { getFirebaseUser } = require('./middleware/firebaseSecurity');
 const port = 3000;
 app.use(cors());
 app.use(helmet());
+// access before json() parsing for body.rawß
+app.use('/upgrade-plan', express.json({verify: (req,res,buf) => { req.rawBody = buf }}), upgradeplan);
 app.use(bodyParser.json());
 app.use('/create-payment-intent', getFirebaseUser, payments);
-app.use('/upgrade-plan', upgradeplan);
 admin.initializeApp({
     credential: admin.credential.cert({
         "type": "service_account",

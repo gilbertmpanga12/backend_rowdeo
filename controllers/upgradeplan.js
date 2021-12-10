@@ -3,12 +3,12 @@ const firestore = require('firebase-admin');
 const stripe = require('../stripe_config');
 const collection = 'rowdeousers';
 const endpointSecret = process.env.endpointSecret;
+const bodyParser = require('body-parser');
 
 router.post('/', async function(req,res){
     try{
         const stripeSignature = req.headers['stripe-signature'];
-        const payload = req.body;
-        console.log(stripeSignature, endpointSecret)
+        const payload = req.rawBody;
         const event = stripe.webhooks.constructEvent(payload, stripeSignature, endpointSecret);
         
         switch (event.type) {
