@@ -36,7 +36,7 @@ router.post('/', async function(req,res){
         // .collection(collection).doc(body).update({subscriptionStatus: true});
         res.status(200).send({message: "Successfully upgraded plan"});
     }catch(error){
-      console.log('error is hereeee', JSON.stringify(error));
+      console.log('error is hereeee +++++++++++', JSON.stringify(error));
         res.status(500).send({error});
     }   
 });
