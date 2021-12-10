@@ -24,7 +24,11 @@ router.post('/', async function(req,res){
               break;
             case 'checkout.session.completed':
               const sessionComplete = event.data.object;
-              console.log("checkout.session.completed", sessionComplete);
+              const userId = sessionComplete['client_reference_id'];
+              await firestore.firestore()
+              .collection(collection).doc(userId).update({subscriptionStatus: true});
+              console.log('callledddddd');
+              console.log(userId)
               // Then define and call a function to handle the event checkout.session.completed
               break;
             // ... handle other event types
@@ -32,8 +36,6 @@ router.post('/', async function(req,res){
               console.log(`Unhandled event type ${event.type}`);
           }
         
-        // await firestore.firestore()
-        // .collection(collection).doc(body).update({subscriptionStatus: true});
         res.status(200).send({message: "Successfully upgraded plan"});
     }catch(error){
       console.log('error is hereeee +++++++++++', JSON.stringify(error));
