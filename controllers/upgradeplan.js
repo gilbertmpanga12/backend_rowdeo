@@ -2,7 +2,7 @@ const router = require('express').Router();
 const firestore = require('firebase-admin');
 const collection = 'rowdeousers';
 const endpointSecret = process.env.endpointSecret;
-router.put('/', async function(req,res){
+router.post('/', async function(req,res){
     try{
         console.log('ALLLLLLLLL CALLLEDDDD'); 
         console.log(JSON.stringify(req.body));
