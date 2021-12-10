@@ -1,7 +1,7 @@
 const { baseUrl } = require('../constants');
-
+const stripe = require('../stripe_config');
 const router = require('express').Router();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 
 router.post('/', async function(req,res){
     try{
