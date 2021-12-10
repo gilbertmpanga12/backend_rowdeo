@@ -8,7 +8,9 @@ router.post('/', async function(req,res){
         console.log(JSON.stringify(req.body));
         const body = req.body.userId;
         const stripeSignature = request.headers['stripe-signature'];
+        console.log('stripe signature *****', stripeSignature);
         const event = stripe.webhooks.constructEvent(request.body, stripeSignature, endpointSecret);
+        console.log('myyyyyyy event', JSON.stringify(event))
         switch (event.type) {
             case 'checkout.session.async_payment_failed':
               const sessionFailed = event.data.object;
@@ -32,7 +34,7 @@ router.post('/', async function(req,res){
         
         // await firestore.firestore()
         // .collection(collection).doc(body).update({subscriptionStatus: true});
-        res.status(204).send({message: "Successfully upgraded plan"});
+        res.status(200).send({message: "Successfully upgraded plan"});
     }catch(error){
       console.log('error is hereeee', JSON.stringify(error));
         res.status(500).send({error});
