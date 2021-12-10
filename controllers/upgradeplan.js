@@ -6,6 +6,7 @@ router.post('/', async function(req,res){
     try{
         console.log('ALLLLLLLLL CALLLEDDDD'); 
         console.log('####################### HHESDERRRRRRRRRR')
+        console.log('ENDDDOPOINNNTTT SECRETTT', endpointSecret)
         console.log(req.headers)
         console.log(JSON.stringify(req.body));
         const body = req.body.userId;
