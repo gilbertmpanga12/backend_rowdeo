@@ -5,6 +5,8 @@ const endpointSecret = process.env.endpointSecret;
 router.post('/', async function(req,res){
     try{
         console.log('ALLLLLLLLL CALLLEDDDD'); 
+        console.log('####################### HHESDERRRRRRRRRR')
+        console.log(req.headers)
         console.log(JSON.stringify(req.body));
         const body = req.body.userId;
         const stripeSignature = request.headers['stripe-signature'];
