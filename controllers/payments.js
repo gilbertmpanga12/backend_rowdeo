@@ -6,8 +6,10 @@ const router = require('express').Router();
 router.post('/', async function(req,res){
     try{
     const amount = req.body.amount;
+    const userId = req.body.userId;
     const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
+            client_reference_id: userId,
             line_items: [
               {
                 price_data: {
@@ -19,9 +21,9 @@ router.post('/', async function(req,res){
                   
                 },
                 quantity: 1,
+
               },
             ],
-            metadata: {userId: 1000},
             mode: 'payment',
             success_url: baseUrl + 'success',
             cancel_url: baseUrl + 'cancel',
