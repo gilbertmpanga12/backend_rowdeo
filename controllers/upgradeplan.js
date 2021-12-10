@@ -2,6 +2,7 @@ const router = require('express').Router();
 const firestore = require('firebase-admin');
 const collection = 'rowdeousers';
 const endpointSecret = process.env.endpointSecret;
+const stripe = require('stripe');
 router.post('/', async function(req,res){
     try{
         const body = req.body.userId;
