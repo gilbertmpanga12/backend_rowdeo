@@ -27,8 +27,6 @@ router.post('/', async function(req,res){
               const userId = sessionComplete['client_reference_id'];
               await firestore.firestore()
               .collection(collection).doc(userId).update({subscriptionStatus: true});
-              console.log('callledddddd');
-              console.log(userId)
               // Then define and call a function to handle the event checkout.session.completed
               break;
             // ... handle other event types
@@ -38,8 +36,7 @@ router.post('/', async function(req,res){
         
         res.status(200).send({message: "Successfully upgraded plan"});
     }catch(error){
-      console.log('error is hereeee +++++++++++', JSON.stringify(error));
-        res.status(500).send({error});
+        res.status(500).send({error: JSON.stringify(error)});
     }   
 });
 
