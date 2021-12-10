@@ -4,14 +4,12 @@ const collection = 'rowdeousers';
 const endpointSecret = process.env.endpointSecret;
 router.post('/', async function(req,res){
     try{
-        console.log('ALLLLLLLLL CALLLEDDDD'); 
-        console.log('####################### HHESDERRRRRRRRRR')
-        console.log('ENDDDOPOINNNTTT SECRETTT', endpointSecret)
-        console.log(req.headers)
-        console.log(JSON.stringify(req.body));
         const body = req.body.userId;
         const stripeSignature = request.headers['stripe-signature'];
-        console.log('stripe signature *****', stripeSignature);
+        console.log(request.headers)
+        console.log('headers ^^^^^^^^^');
+        console.log(stripeSignature);
+        console.log(request.headers['stripe-signature'])
         const event = stripe.webhooks.constructEvent(request.body, stripeSignature, endpointSecret);
         console.log('myyyyyyy event', JSON.stringify(event))
         switch (event.type) {
