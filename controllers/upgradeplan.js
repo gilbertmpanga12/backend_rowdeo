@@ -9,7 +9,9 @@ router.post('/', async function(req,res){
         const stripeSignature = req.headers['stripe-signature'];
         console.log('SIGNATRURE', stripeSignature)
         console.log('SECRET ^^^', endpointSecret)
+        console.log(JSON.stringify(stripe.webhooks));
         const event = stripe.webhooks.constructEvent(req.body, stripeSignature, endpointSecret);
+        console.log(event);
         switch (event.type) {
             case 'checkout.session.async_payment_failed':
               const sessionFailed = event.data.object;
