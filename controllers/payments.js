@@ -25,8 +25,8 @@ router.post('/', async function(req,res){
               },
             ],
             mode: 'payment',
-            success_url: baseUrl + 'success',
-            cancel_url: baseUrl + 'cancel',
+            success_url: baseUrl + 'success' + '/success',
+            cancel_url: baseUrl + 'cancel' + '/failed',
           });
           res.json({ id: session.id });
     }catch(error){
