@@ -3,7 +3,6 @@ const firestore = require('firebase-admin');
 const stripe = require('../stripe_config');
 const collection = 'rowdeousers';
 const endpointSecret = process.env.endpointSecret;
-const bodyParser = require('body-parser');
 
 router.post('/', async function(req,res){
     try{
